@@ -66,7 +66,8 @@
         }
         if (!$error) {
             if ($result->rowCount() > 0) {
-                echo "<table>
+                echo " <div id='table-container'>
+                <table>
                 <tr>
                     <th>codice</th>
                     <th>nome</th>
@@ -94,15 +95,14 @@
                   </tr>";
                 }
 
-                echo "</table>";
+                echo "</table>
+                    </div>";
             } else {
                 echo "<p>Nessun risultato.</p>";
             }
         }
-    } ?>
-  <footer>
-    <p>Progetto PW</p>
-  </footer>
+    } 
+    include 'footer.html'?>
 </body>
 
 </html>

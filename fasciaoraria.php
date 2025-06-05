@@ -11,30 +11,42 @@
     <?php
         include 'titolo.html';
         include 'nav.html';
-    ?>
+        include 'connect.php';
+         $query = "SELECT * FROM FasciaOraria";
+        try {
+            $result = $conn->query($query);
+        } catch (PDOException $e) {
+            echo "DB error on query: " . $e->getMessage();
+            $error = true;
+        }
+            if (!$error) {
+            if ($result->rowCount() > 0) {
+                echo " <div id='table-container'>
+                <table>
+                <tr>
+                    <th>durata</th>
+                    <th>sala</th>
+                    <th>data</th>
+                    <th>ora</th>
+                </tr>";
 
-    <form name="caselle" method="post" action="goldengym.html">
-        <label>Sala</label>
-        <input type="text" name="Sala" value="">
-        <label>Data</label>
-        <input type="text" name="Data" value="">
-        <label>Ora</label>
-        <input type="text" name="Ora" value="">
-        <label>Durata</label>
-        <input type="text" name="Durata" value="">
-    </form>
-    <button>
-        aggiungi
-    </button>
-    <button>
-        cancella
-    </button>
-    <button>
-        invia
-    </button>
-    <footer>
-        Questo è il footer
-    </footer>
+                $i = 0;
+                foreach ($result as $riga) {
+                    $i++;
+                    $classRiga = ($i % 2 == 0) ? 'class="rigaPari"' : 'class="rigaDispari"';
+                    echo "<tr $classRiga>
+                    <td>{$riga['durata']}</td>
+                    <td>{$riga['sala']}</td>
+                    <td>{$riga['data']}</td>
+                    <td>{$riga['ora']}</td>
+                  </tr>";
+                }
+
+                echo "</table>
+                </div>";
+            }
+            } 
+            include 'footer.html'?>
 </body>
 
 </html>

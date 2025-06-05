@@ -1,0 +1,221 @@
+@font-face {
+	font-family: Rolie Twily;
+    src: url("Rolie_Twily.otf");
+}
+
+/* Stili Generali e Reset */
+
+body {
+    height: 100%;
+    overflow: hidden; /* Disabilita lo scroll generale */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Un grigio chiaro per lo sfondo generale */
+    color: #333;
+    /* !!! IMPORTANTE: Aggiusta questo padding-top in base all'altezza del tuo titolo fisso e del modulo di ricerca !!! */
+    /* Circa 60px per il titolo + 280px per il modulo di ricerca, da verificare */
+    padding-top: 340px; /* Valore stimato, da adattare */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Stile per la barra del titolo */
+.page-title-bar {
+    position: fixed;      /* Aggiunto */
+    top: 0;               /* Aggiunto */
+    left: 0;              /* Aggiunto */
+    z-index: 1001;        /* Aggiunto: superiore al form e al nav */
+    background-color: goldenrod; /* Colore di sfondo della barra (es. grigio scuro) */
+    color: black;            /* Colore del testo (es. bianco) */
+    padding: 10px 0;        /* Spaziatura interna verticale */
+    text-align: center;     /* Allinea il testo al centro */
+    /* Posizionamento se vuoi che stia proprio in cima e sia "fisso" o abbia un'ampiezza specifica */
+    width: 100%;            /* Larghezza piena */
+    box-sizing: border-box; /* Include padding e border nella larghezza */
+    /* Altri stili opzionali */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra leggera sotto la barra */
+    font-family: Rolie Twily, sans-serif;
+    font-size: 40px;
+}
+
+form[name="caselle"] { /* Selezioniamo il form tramite il suo attributo 'name' */
+    position: fixed;
+    top: 60px; /* Spostato sotto il titolo fisso */
+    left: 0;
+    padding: 15px;
+    background-color: khaki; /* Giallo della palestra */
+    border-radius: 0 0 8px 0;
+    max-width: 300px; /* Larghezza del modulo */
+    box-sizing: border-box;
+    z-index: 1000; /* Assicura che sia sopra il contenuto scorrevole */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+
+    /* Stili per rendere gli elementi del form verticali */
+    display: flex;
+    flex-direction: column; /* Impila tutti gli elementi del form verticalmente */
+    align-items: flex-start; /* Allinea gli elementi a sinistra nel contenitore flex */
+}
+
+form[name="caselle"] label {
+    margin-top: 10px; /* Spazio sopra ogni label */
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9em;
+}
+
+form[name="caselle"] input[type="text"],
+form[name="caselle"] input[type="date"],
+form[name="caselle"] input[type="tel"],
+form[name="caselle"] input[type="email"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    width: 100%; /* Occupa la larghezza disponibile */
+    box-sizing: border-box;
+}
+
+form[name="caselle"] input[type="submit"] {
+    background-color: black; /* Arancione per il bottone Invia */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px; /* Spazio sopra il bottone Invia */
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+form[name="caselle"] input[type="submit"]:hover {
+    background-color:darkslategrey;
+}
+
+
+/* Navigazione (destra, verticale, fissa) */
+/* L'intero <nav> verrÃ  reso fisso e posizionato a destra */
+nav {
+    position: fixed;
+    top: 60px; /* Puoi anche mettere 0 se vuoi attaccarla alla barra */
+    right: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    background-color: black;
+    padding: 20px;
+    border-radius: 0 0 0 8px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+nav ul li a {
+    color:ivory;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 8px 12px;
+    display: block; /* Rende il link cliccabile per tutta l'area del padding */
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: khaki;
+    color: black;
+}
+
+
+/* Stili per i risultati della ricerca (tabelle e paragrafi di "Nessun risultato") */
+/* Questi elementi non sono fissi e devono essere al centro */
+table {
+    width: calc(100% - 500px); /* Larghezza calcolata per lasciare spazio ai lati */
+    margin: 1px auto; /* Centra la tabella orizzontalmente */
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border-spacing: 0;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    position: sticky;
+	top: -15px;
+    margin: 0;
+    background-color: goldenrod; /* Giallo per l'intestazione della tabella */
+    color: black;
+    font-weight: bold;
+}
+
+table tr.rigaPari {
+    background-color: #f9f9f9; /* Colore leggero per righe pari */
+}
+
+table tr.rigaDispari {
+    background-color: #ffffff; /* Colore per righe dispari */
+}
+
+table tr:hover {
+    background-color: #ffe899; /* Giallo chiaro all'hover della riga */
+}
+
+#table-container {
+    position: absolute;
+    top: 100px;       /* appena sotto la barra del titolo */
+    left: 320px;      /* lascia spazio al form */
+    right: 200px;     /* lascia spazio alla barra di navigazione */
+    bottom: 50px;     /* sopra il footer */
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Stile per i paragrafi di "Nessun risultato" */
+p {
+    position: absolute;
+    top: 100px;       /* appena sotto la barra del titolo */
+    left: 320px;      /* lascia spazio al form */
+    right: 200px;     /* lascia spazio alla barra di navigazione */
+    text-align: center; /* Centra il testo */
+    margin: 20px auto;
+    max-width: 900px; /* Limita la larghezza per non essere troppo esteso */
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Stili per il footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: right;
+    padding: 15px 0;
+    z-index: 1000;
+}
